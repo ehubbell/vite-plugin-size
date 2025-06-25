@@ -1,0 +1,13 @@
+{
+  "extends": "@ehubbell/configs/ts-config-package",
+  "compilerOptions": {
+		"baseUrl": ".",
+		"rootDir": "src",
+		"outDir": "dist",
+		"declaration": true,
+		"emitDeclarationOnly": true,
+    "types": ["vite/client", "node", "jest"],
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"],
+}

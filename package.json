@@ -1,0 +1,61 @@
+{
+  "name": "vite-plugin-size",
+  "version": "0.0.0",
+  "description": "A simple vite plugin that will log your bundle output.",
+  "author": "Eric Hubbell<eric@erichubbell.com>",
+  "license": "ISC",
+  "type": "module",
+  "main": "dist/index.cjs.js",
+  "modules": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ehubbell/vite-plugin-size.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vite",
+    "vite-library",
+    "vite-plugin"
+  ],
+  "scripts": {
+    "dev": "vite build --mode development --minify false --watch",
+    "start": "vite build --mode development --minify false",
+    "build": "vite build --mode production --minify true",
+    "build:ts": "tsc --project tsconfig.json --noEmit false && tsc-alias",
+    "clean": "npm run lint:fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier src",
+    "format:fix": "prettier --write src",
+    "commit": "scripts/commit.sh",
+    "deploy": "scripts/deploy.sh",
+    "git": "git push --tags",
+    "test": "jest",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "bytes": "^3.1.2",
+    "chalk": "^5.4.1",
+    "fs-extra": "^11.3.0",
+    "gzip-size": "^7.0.0",
+    "yalc": "^1.0.0-pre.53"
+  },
+  "devDependencies": {
+    "@ehubbell/configs": "^0.1.0",
+    "@types/jest": "^29.5.1",
+    "eslint": "^8.57.1",
+    "husky": "^9.1.7",
+    "jest": "^29.5.0",
+    "prettier": "^3.5.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.16",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+	"autorun": true,
+	"terminals": [
+		{
+			"name": "project-terminal",
+			"focus": true,
+			"execute": false,
+			"command": "npm start"
+		},
+		{
+			"name": "project-terminal-alt",
+			"focus": true,
+			"execute": false,
+			"command": "npm link"
+		},
+    {
+			"name": "misc",
+			"open": true,
+      "command": ""
+		}
+	]
+}
