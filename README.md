@@ -15,7 +15,7 @@ npm i vite-plugin-size -D
 
 ## Usage
 
-Simply add the plugin and make sure to declare the build directory:
+Simply add the plugin and declare the directory (optional) you want to measure:
 
 ```ts
 // vite.config.ts
@@ -32,10 +32,10 @@ export default defineConfig(({ mode }) => {
         entry: path.resolve(__dirname, "src/index.ts"),
         name: "Project",
         formats: ["es", "cjs"],
-        fileName: (format) => `index.${format}.js`,
+        fileName: (format, entryName) => `${entryName}$.${format}.js`,
       },
     },
-    plugins: [runSize("dist")],
+    plugins: [runSize('dist')],
     resolve: {
       alias: {
         src: path.resolve(__dirname, "/src"),

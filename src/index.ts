@@ -34,20 +34,19 @@ const computeDirectoryStats = async (pathName, nested = false) => {
 	return [size, gzip];
 };
 
-const computeSize = async pathName => {
-	const file = await fileStats(pathName);
-	const [size, gzip] = file.isDirectory() ? await computeDirectoryStats(pathName) : computeFileStats(pathName);
-	const formattedSize = bytes.format(size, { unitSeparator: ' ' });
-	const formattedGZip = bytes.format(gzip, { unitSeparator: ' ' });
-	const decoratedTitle = chalk.blue(`bundle size (${pathName}): `);
-	const decoratedStats = chalk.dim(`${formattedSize} bundle | ${formattedGZip} gzip`);
-	console.log(decoratedTitle, decoratedStats);
-};
-
-export const runSize = (pathName: string): any => {
+export const runSize = (pathName = 'dist'): any => {
 	return {
 		name: 'run-size',
-		closeBundle: async () => computeSize(pathName),
+		closeBundle: async () => {
+			const file = await fileStats(pathName);
+			const [size, gzip] = file.isDirectory() ? await computeDirectoryStats(pathName) : computeFileStats(pathName);
+			// NPM includes license, readme, and package.json as well
+			const formattedSize = bytes.format(size, { unitSeparator: ' ' });
+			const formattedGZip = bytes.format(gzip, { unitSeparator: ' ' });
+			const decoratedTitle = chalk.blue(`bundle size (${pathName}): `);
+			const decoratedStats = chalk.dim(`${formattedSize} bundle | ${formattedGZip} gzip`);
+			console.log(decoratedTitle, decoratedStats);
+		},
 	};
 };
 
