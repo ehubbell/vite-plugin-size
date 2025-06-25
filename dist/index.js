@@ -41,4 +41,3 @@ const runSize = (pathName) => {
 export {
   runSize
 };
-//# sourceMappingURL=index.js.map

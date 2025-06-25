@@ -41,4 +41,3 @@ const runSize = (pathName) => {
   };
 };
 exports.runSize = runSize;
-//# sourceMappingURL=index.cjs.map
