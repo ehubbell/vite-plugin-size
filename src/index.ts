@@ -37,12 +37,11 @@ const computeDirectoryStats = async (pathName, nested = false) => {
 const computeSize = async pathName => {
 	const file = await fileStats(pathName);
 	const [size, gzip] = file.isDirectory() ? await computeDirectoryStats(pathName) : computeFileStats(pathName);
-	console.log(
-		chalk.blue(`size (${pathName}): `),
-		chalk.dim(
-			`${bytes.format(size, { unitSeparator: ' ' })} bundle | ${bytes.format(gzip, { unitSeparator: ' ' })} gzip`,
-		),
-	);
+	const formattedSize = bytes.format(size, { unitSeparator: ' ' });
+	const formattedGZip = bytes.format(gzip, { unitSeparator: ' ' });
+	const decoratedTitle = chalk.blue(`bundle size (${pathName}): `);
+	const decoratedStats = chalk.dim(`${formattedSize} bundle | ${formattedGZip} gzip`);
+	console.log(decoratedTitle, decoratedStats);
 };
 
 export const runSize = (pathName: string): any => {
