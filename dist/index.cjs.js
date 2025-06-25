@@ -2696,9 +2696,9 @@ const computeDirectoryStats = async (pathName, nested = false) => {
 const computeSize = async (pathName) => {
   const file2 = await fileStats(pathName);
   const [size, gzip] = file2.isDirectory() ? await computeDirectoryStats(pathName) : computeFileStats(pathName);
-  const formattedSize = bytes.format(size, { unitSeparator: " " })
-  const formattedGZip = bytes.format(gzip, { unitSeparator: " " })
-  const decoratedTitle = chalk.blue(`bundle size (${pathName}): `)
+  const formattedSize = bytes.format(size, { unitSeparator: " " });
+  const formattedGZip = bytes.format(gzip, { unitSeparator: " " });
+  const decoratedTitle = chalk.blue(`bundle size (${pathName}): `);
   const decoratedStats = chalk.dim(`${formattedSize} bundle | ${formattedGZip} gzip`);
   console.log(decoratedTitle, decoratedStats);
 };
