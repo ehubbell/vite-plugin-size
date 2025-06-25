@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-size",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A simple vite plugin that will log your bundle size.",
   "author": "Eric Hubbell<eric@erichubbell.com>",
   "license": "ISC",
