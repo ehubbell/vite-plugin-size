@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "dev": "vite build --mode development --minify false --watch",
-    "start": "vite build --mode development --minify false",
+    "start": "vite build --mode development --minify false --watch",
     "build": "vite build --mode production --minify true && npm run build:ts",
     "build:ts": "tsc --project tsconfig.json --noEmit false && tsc-alias",
     "clean": "npm run lint:fix",
