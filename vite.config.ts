@@ -7,7 +7,6 @@ export default defineConfig(({ mode }) => {
 	return {
 		base: './',
 		build: {
-			ssr: true,
 			sourcemap: mode === 'development',
 			lib: {
 				entry: path.resolve(__dirname, 'src/index.ts'),
@@ -16,6 +15,7 @@ export default defineConfig(({ mode }) => {
 				fileName: (format, entryName) => `${entryName}.${format}.js`,
 			},
 			rollupOptions: {
+				external: ['node:fs', 'node:stream', 'node:zlib', 'node:util', 'contants', 'path', 'stream', 'fs', 'util', 'assert'],
 				plugins: [peerDepsExternal()],
 			},
 		},
