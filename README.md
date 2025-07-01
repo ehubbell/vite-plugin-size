@@ -1,6 +1,6 @@
 # Overview
 
-A simple vite plugin that will rollup your bundle and log it's uncompressed and gzip size on every build.
+A simple vite plugin that will log your build's size (compressed & uncompressed) on every build.
 
 ## Prerequisites
 

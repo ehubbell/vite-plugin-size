@@ -1,14 +1,14 @@
 import bytes from 'bytes';
 import chalk from 'chalk';
-import Fs from 'fs-extra';
+import fs from 'fs-extra';
 import { gzipSizeFromFileSync } from 'gzip-size';
 
 const fileStats = async (pathName: string) => {
-	return await Fs.promises.stat(pathName);
+	return await fs.promises.stat(pathName);
 };
 
 const formatStats = async pathName => {
-	const stats = await Fs.promises.stat(pathName);
+	const stats = await fs.promises.stat(pathName);
 	stats.gzip = gzipSizeFromFileSync(pathName);
 	return stats;
 };
@@ -19,7 +19,7 @@ const computeFileStats = async pathName => {
 };
 
 const computeDirectoryStats = async (pathName, nested = false) => {
-	const entries = await Fs.promises.readdir(pathName);
+	const entries = await fs.promises.readdir(pathName);
 	const stats = await Promise.all(
 		entries.map(async entry => {
 			const stats = await fileStats(pathName + '/' + entry);
