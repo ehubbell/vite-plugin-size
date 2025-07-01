@@ -8,7 +8,7 @@ fi
 echo -e "\n deploying updates...\n"
 
 echo -e "\n npm version \n"
-npm version $2
+npm version $1
 
 echo -e "\n npm build \n"
 npm run build & build_id=$!
