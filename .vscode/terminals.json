@@ -14,7 +14,7 @@
 			"command": "npm link"
 		},
     {
-			"name": "misc",
+			"name": "zsh",
 			"open": true,
       "command": ""
 		}
