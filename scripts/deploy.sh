@@ -7,25 +7,26 @@ fi
 
 echo -e "\n deploying updates...\n"
 
-echo -e "\n npm version \n"
-npm version $1
+npm run clean & clean_id=$!
+wait $clean_id
+if [ $? -eq 1 ]; then exit; fi
 
-echo -e "\n npm build \n"
+npm version $1 & version_id=$!
+wait $version_id
+if [ $? -eq 1 ]; then exit; fi
+
 npm run build & build_id=$!
 wait $build_id
 if [ $? -eq 1 ]; then exit; fi
 
-echo -e "\n npm publish \n"
-npm publish & publish_id=$!
+npm publish --access public & publish_id=$!
 wait $publish_id
 if [ $? -eq 1 ]; then exit; fi
 
-echo -e "\n git push tags \n"
 git push --tags & push_id=$!
 wait $push_id
 if [ $? -eq 1 ]; then exit; fi
 
-echo -e "\n git push \n"
 git push & push_id=$!
 wait $push_id
 if [ $? -eq 1 ]; then exit; fi
