@@ -14,7 +14,6 @@ export default defineConfig(({ mode }) => {
 				entry: path.resolve(__dirname, 'src/index.ts'),
 				formats: ['es', 'cjs'],
 				name: 'Size',
-				fileName: (format, entryName) => `${entryName}.${format}.js`,
 			},
 			rollupOptions: {
 				external: [
