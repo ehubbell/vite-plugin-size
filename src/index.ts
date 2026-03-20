@@ -34,7 +34,7 @@ const computeDirectoryStats = async (pathName, nested = false) => {
 	return [size, gzip];
 };
 
-export const runSize = (pathName?: string, format?: string) => ({
+export const runSize = ({ pathName = 'dist', format = '' }) => ({
 	apply: 'build',
 	name: 'run-size',
 	writeBundle: async outputOptions => {
