@@ -19,9 +19,8 @@ npm run build & build_id=$!
 wait $build_id
 if [ $? -eq 1 ]; then exit; fi
 
-npm publish --access public & publish_id=$!
-wait $publish_id
-if [ $? -eq 1 ]; then exit; fi
+npm publish --access public
+if [ $? -ne 0 ]; then echo "Publish failed"; exit 1; fi
 
 git push --tags & push_id=$!
 wait $push_id

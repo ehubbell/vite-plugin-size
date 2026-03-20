@@ -34,20 +34,20 @@ const computeDirectoryStats = async (pathName, nested = false) => {
 	return [size, gzip];
 };
 
-export const runSize = (pathName = 'dist'): any => {
-	return {
-		name: 'run-size',
-		closeBundle: async () => {
-			const file = await fileStats(pathName);
-			const [size, gzip] = file.isDirectory() ? await computeDirectoryStats(pathName) : computeFileStats(pathName);
-			// NPM includes license, readme, and package.json as well
-			const formattedSize = bytes.format(size, { unitSeparator: ' ' });
-			const formattedGZip = bytes.format(gzip, { unitSeparator: ' ' });
-			const decoratedTitle = chalk.blue(`bundle size (${pathName}): `);
-			const decoratedStats = chalk.dim(`${formattedSize} bundle | ${formattedGZip} gzip`);
-			console.log(decoratedTitle, decoratedStats);
-		},
-	};
-};
+export const runSize = (pathName?: string, format?: string) => ({
+	apply: 'build',
+	name: 'run-size',
+	writeBundle: async outputOptions => {
+		if (format && format !== outputOptions.format) return;
+		const file = await fileStats(pathName);
+		const [size, gzip] = file.isDirectory() ? await computeDirectoryStats(pathName) : computeFileStats(pathName);
+		// NPM includes license, readme, and package.json as well
+		const formattedSize = bytes.format(size, { unitSeparator: ' ' });
+		const formattedGZip = bytes.format(gzip, { unitSeparator: ' ' });
+		const decoratedTitle = chalk.blue(`bundle size (${pathName}): `);
+		const decoratedStats = chalk.dim(`${formattedSize} bundle | ${formattedGZip} gzip`);
+		console.log(decoratedTitle, decoratedStats);
+	},
+});
 
 // Docs
